@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Set;
 import java.util.UUID;
 
 @Data
@@ -22,4 +23,6 @@ public class Teacher {
     private String nik;
     @ManyToOne(cascade = CascadeType.ALL)
     private Student students;
+    @OneToMany(mappedBy = "teacher")
+    private Set<Teaching> teaching;
 }

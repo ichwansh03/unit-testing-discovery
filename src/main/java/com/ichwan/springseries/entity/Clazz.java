@@ -23,4 +23,6 @@ public class Clazz {
     private int totalTable;
     @OneToMany(mappedBy = "clazz", orphanRemoval = true)
     private Set<Student> students;
+    @OneToMany(mappedBy = "clazzes")
+    private Set<Teaching> teachings;
 }
