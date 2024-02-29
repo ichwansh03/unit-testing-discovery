@@ -5,21 +5,19 @@ import com.ichwan.springseries.dto.StudentRequest;
 import com.ichwan.springseries.entity.Student;
 import com.ichwan.springseries.service.StudentService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/v1")
 public class StudentController {
 
     private final StudentService studentService;
     private static final String STATUS_OK = "200 OK";
-
-    public StudentController(StudentService studentService) {
-        this.studentService = studentService;
-    }
 
     @PostMapping("/student")
     public ResponseData<Student> createStudent(@Valid @RequestBody StudentRequest studentRequest) {
