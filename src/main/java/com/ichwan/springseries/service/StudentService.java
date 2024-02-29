@@ -1,6 +1,6 @@
 package com.ichwan.springseries.service;
 
-import com.ichwan.springseries.dto.StudentDTO;
+import com.ichwan.springseries.dto.StudentRequest;
 import com.ichwan.springseries.entity.Student;
 import com.ichwan.springseries.repository.StudentRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -10,7 +10,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -23,11 +22,11 @@ public class StudentService {
     }
 
     @Transactional
-    public Student create(StudentDTO studentDTO) {
+    public Student create(StudentRequest studentRequest) {
         Student student = new Student();
-        student.setName(studentDTO.name());
-        student.setAge(studentDTO.age());
-        student.setNip(studentDTO.nip());
+        student.setName(studentRequest.name());
+        student.setAge(studentRequest.age());
+        student.setNip(studentRequest.nip());
 
         return studentRepository.save(student);
     }
@@ -42,13 +41,13 @@ public class StudentService {
     }
 
     @Transactional
-    public Student update(UUID id, StudentDTO studentDTO) {
+    public Student update(UUID id, StudentRequest studentRequest) {
         Student student = studentRepository.findById(id)
                 .orElseThrow(EntityNotFoundException::new);
 
-        student.setName(studentDTO.name());
-        student.setAge(studentDTO.age());
-        student.setNip(studentDTO.nip());
+        student.setName(studentRequest.name());
+        student.setAge(studentRequest.age());
+        student.setNip(studentRequest.nip());
 
         return studentRepository.save(student);
     }

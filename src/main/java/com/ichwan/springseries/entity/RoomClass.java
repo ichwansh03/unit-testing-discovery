@@ -13,7 +13,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Entity
 @Table(name = "class")
-public class Clazz {
+public class RoomClass {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

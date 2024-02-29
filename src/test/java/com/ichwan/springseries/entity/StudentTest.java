@@ -18,8 +18,8 @@ class StudentTest {
         student.setAge(20);
         student.setNip("12939");
 
-        Clazz clazz = new Clazz();
-        student.setClazz(clazz);
+        RoomClass roomClass = new RoomClass();
+        student.setRoomClass(roomClass);
 
         Set<Teacher> teachers = new HashSet<>();
 

@@ -1,6 +1,6 @@
 package com.ichwan.springseries.service;
 
-import com.ichwan.springseries.dto.StudentDTO;
+import com.ichwan.springseries.dto.StudentRequest;
 import com.ichwan.springseries.entity.Student;
 import com.ichwan.springseries.repository.StudentRepository;
 import org.junit.jupiter.api.*;
@@ -28,15 +28,15 @@ class StudentServiceTest {
     @Mock
     private StudentRepository studentRepository;
 
-    StudentDTO studentDto = new StudentDTO("ichwan",12,"12121");
+    StudentRequest studentRequest = new StudentRequest("ichwan",12,"12121");
 
     Student student = new Student();
 
     @BeforeEach
     void setUp() {
-        student.setName(studentDto.name());
-        student.setNip(studentDto.nip());
-        student.setAge(studentDto.age());
+        student.setName(studentRequest.name());
+        student.setNip(studentRequest.nip());
+        student.setAge(studentRequest.age());
     }
 
     @AfterEach
@@ -48,7 +48,7 @@ class StudentServiceTest {
     void createStudentTest() {
         when(studentRepository.save(student)).thenReturn(student);
 
-        Student newStudent = studentService.create(studentDto);
+        Student newStudent = studentService.create(studentRequest);
 
         Assertions.assertEquals(newStudent,student);
         Assertions.assertNotNull(student);
@@ -108,11 +108,11 @@ class StudentServiceTest {
         when(studentRepository.findById(studentId)).thenReturn(Optional.of(student));
         when(studentRepository.save(student)).thenReturn(student);
 
-        Student updatedStudent = studentService.update(studentId, studentDto);
+        Student updatedStudent = studentService.update(studentId, studentRequest);
 
-        Assertions.assertEquals(updatedStudent.getName(), studentDto.name());
-        Assertions.assertEquals(updatedStudent.getAge(), studentDto.age());
-        Assertions.assertEquals(updatedStudent.getNip(), studentDto.nip());
+        Assertions.assertEquals(updatedStudent.getName(), studentRequest.name());
+        Assertions.assertEquals(updatedStudent.getAge(), studentRequest.age());
+        Assertions.assertEquals(updatedStudent.getNip(), studentRequest.nip());
     }
 
     @Test

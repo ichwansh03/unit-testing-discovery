@@ -1,14 +1,13 @@
 package com.ichwan.springseries.controller;
 
 import com.ichwan.springseries.dto.ResponseData;
-import com.ichwan.springseries.dto.StudentDTO;
+import com.ichwan.springseries.dto.StudentRequest;
 import com.ichwan.springseries.entity.Student;
 import com.ichwan.springseries.service.StudentService;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -23,8 +22,8 @@ public class StudentController {
     }
 
     @PostMapping("/student")
-    public ResponseData<Student> createStudent(@Valid @RequestBody StudentDTO studentDTO) {
-        Student student = studentService.create(studentDTO);
+    public ResponseData<Student> createStudent(@Valid @RequestBody StudentRequest studentRequest) {
+        Student student = studentService.create(studentRequest);
         return new ResponseData<>("201 Created", student);
     }
 
@@ -42,8 +41,8 @@ public class StudentController {
     }
 
     @PutMapping("student/{id}")
-    public ResponseData<Student> updateStudent(@PathVariable("id") UUID uuid, @RequestBody StudentDTO studentDTO){
-        Student update = studentService.update(uuid, studentDTO);
+    public ResponseData<Student> updateStudent(@PathVariable("id") UUID uuid, @RequestBody StudentRequest studentRequest){
+        Student update = studentService.update(uuid, studentRequest);
         return new ResponseData<>(STATUS_OK, update);
     }
 

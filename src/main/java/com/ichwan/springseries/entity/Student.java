@@ -22,7 +22,7 @@ public class Student {
     private int age;
     private String nip;
     @ManyToOne(cascade = CascadeType.ALL)
-    private Clazz clazz;
+    private RoomClass roomClass;
     @OneToMany(mappedBy = "students", orphanRemoval = true)
     private Set<Teacher> teachers;
 }

@@ -16,7 +16,7 @@ public class Teaching {
     @Id
     UUID id;
     @ManyToOne
-    private Clazz clazzes;
+    private RoomClass clazzes;
     @ManyToOne
     private Teacher teacher;
     private String subject;

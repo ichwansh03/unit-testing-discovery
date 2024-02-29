@@ -1,7 +1,7 @@
 package com.ichwan.springseries.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ichwan.springseries.dto.StudentDTO;
+import com.ichwan.springseries.dto.StudentRequest;
 import com.ichwan.springseries.service.StudentService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -32,18 +32,18 @@ class StudentControllerTest {
 
     @Test
     void createStudentTest() throws Exception {
-        StudentDTO studentDTO = new StudentDTO("Ichwan",22,"12039");
+        StudentRequest studentRequest = new StudentRequest("Ichwan",22,"12039");
         mockMvc.perform(
-                MockMvcRequestBuilders.post("/api/v1/student/", studentDTO)
+                MockMvcRequestBuilders.post("/api/v1/student/", studentRequest)
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print());
 
-        Assertions.assertEquals("Ichwan", studentDTO.name());
-        Assertions.assertEquals(22, studentDTO.age());
-        Assertions.assertEquals("12039", studentDTO.nip());
+        Assertions.assertEquals("Ichwan", studentRequest.name());
+        Assertions.assertEquals(22, studentRequest.age());
+        Assertions.assertEquals("12039", studentRequest.nip());
 
-        verify(studentService, times(0)).create(studentDTO);
+        verify(studentService, times(0)).create(studentRequest);
     }
 
     
