@@ -10,7 +10,6 @@ import java.util.UUID;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "class")
 public class RoomClass {
@@ -21,8 +20,13 @@ public class RoomClass {
     @Column(unique = true)
     private String code;
     private int totalTable;
-    @OneToMany(mappedBy = "clazz", orphanRemoval = true)
+    @OneToMany(mappedBy = "roomClass", orphanRemoval = true)
     private Set<Student> students;
     @OneToMany(mappedBy = "clazzes")
     private Set<Teaching> teachings;
+
+    public RoomClass(String code, int totalTable) {
+        this.code = code;
+        this.totalTable = totalTable;
+    }
 }

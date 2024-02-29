@@ -2,6 +2,7 @@ package com.ichwan.springseries.service;
 
 import com.ichwan.springseries.dto.StudentRequest;
 import com.ichwan.springseries.entity.Student;
+import com.ichwan.springseries.repository.RoomClassRepository;
 import com.ichwan.springseries.repository.StudentRepository;
 import org.junit.jupiter.api.*;
 import org.mockito.ArgumentCaptor;
@@ -28,7 +29,14 @@ class StudentServiceTest {
     @Mock
     private StudentRepository studentRepository;
 
-    StudentRequest studentRequest = new StudentRequest("ichwan",12,"12121");
+    @Mock
+    private RoomClassRepository roomClassRepository;
+
+    StudentRequest studentRequest = new StudentRequest(
+            "ichwan",
+            12,
+            "12121",
+            null);
 
     Student student = new Student();
 
@@ -84,7 +92,7 @@ class StudentServiceTest {
             students.add(student);
         }
 
-        Pageable pageable = PageRequest.of(students.size(), 10);
+        Pageable pageable = PageRequest.of(students.size(), 1);
         studentService.findAll(pageable.getPageNumber(), pageable.getPageSize());
 
         when(studentRepository.findAll()).thenReturn(students);
