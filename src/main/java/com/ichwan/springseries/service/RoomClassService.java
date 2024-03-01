@@ -23,6 +23,7 @@ public class RoomClassService {
     public RoomClass create(RoomClassRequest roomClassRequest) {
         RoomClass roomClass = new RoomClass();
         roomClass.setCode(roomClassRequest.code());
+        roomClass.setTotalTable(roomClassRequest.totalTable());
         return roomClassRepository.save(roomClass);
     }
 
@@ -45,6 +46,7 @@ public class RoomClassService {
                 .orElseThrow(EntityNotFoundException::new);
 
         roomClass.setCode(roomClassRequest.code());
+        roomClass.setTotalTable(roomClassRequest.totalTable());
 
         return roomClassRepository.save(roomClass);
     }

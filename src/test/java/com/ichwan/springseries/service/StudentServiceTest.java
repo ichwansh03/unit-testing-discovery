@@ -59,7 +59,7 @@ class StudentServiceTest {
         Student newStudent = studentService.create(studentRequest);
 
         Assertions.assertEquals(newStudent,student);
-        Assertions.assertNotNull(student);
+        Assertions.assertNotNull(newStudent);
 
         ArgumentCaptor<Student> studentCaptor = ArgumentCaptor.forClass(Student.class);
 
@@ -76,7 +76,7 @@ class StudentServiceTest {
         student.setId(id);
         when(studentRepository.findById(id)).thenReturn(Optional.of(student));
         Student byId = studentService.findById(id);
-         Assertions.assertNotNull(student);
+         Assertions.assertNotNull(byId);
         Assertions.assertEquals(student, byId);
     }
 
